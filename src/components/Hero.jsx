@@ -90,7 +90,7 @@ export default function Hero() {
           {stats.map((s, i) => (
             <div key={i} className="stat-item">
               <div className="font-display font-bold text-accent text-2xl leading-none mb-1">{s.num}</div>
-              <div className="font-mono uppercase text-muted text-[0.65rem] tracking-[0.1em]">{s.label}</div>
+              <div className="font-mono uppercase text-muted text-[0.65rem] tracking-widest">{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -100,7 +100,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 border-t border-border py-[10px] overflow-hidden bg-surface">
         <div className="animate-marquee flex whitespace-nowrap">
           {[...ticker, ...ticker].map((item, i) => (
-            <span key={i} className="font-mono uppercase text-muted text-[0.7rem] tracking-[0.1em] px-10">
+            <span key={i} className="font-mono uppercase text-muted text-[0.7rem] tracking-widest px-10">
               {item}<span className="text-accent ml-10">◆</span>
             </span>
           ))}

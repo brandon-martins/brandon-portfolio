@@ -30,7 +30,7 @@ export default function Navbar() {
 
         <button onClick={() => document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' })}
           className="font-display font-bold text-[1.15rem] text-text tracking-[-0.01em] bg-transparent border-none cursor-pointer">
-          BM<span className="text-accent ml-[2px]">.</span>
+          BM<span className="text-accent ml-0.5">.</span>
         </button>
 
         <nav className="hidden md:flex gap-7 items-center">
@@ -41,7 +41,7 @@ export default function Navbar() {
         </nav>
 
         <button onClick={() => setMenuOpen(!menuOpen)}
-          className="flex md:hidden flex-col gap-[5px] p-1 bg-transparent border-none cursor-pointer"
+          className="flex md:hidden flex-col gap-1.25 p-1 bg-transparent border-none cursor-pointer"
           aria-label="Toggle menu">
           <span className={`ham-bar ${menuOpen ? 'ham-bar-top-open' : ''}`} />
           <span className={`ham-bar ${menuOpen ? 'ham-bar-mid-open' : ''}`} />

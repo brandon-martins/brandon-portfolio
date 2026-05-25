@@ -106,7 +106,7 @@ export const education = [
     degree: 'Information Systems Engineering',
     grade: 'Credit',
     institution: 'Computer Training Institute (CTI)',
-    year: '2017',
+    year: '2005',
   },
   {
     degree: 'High School Diploma',
@@ -122,16 +122,16 @@ export const certifications = [
   { name: 'AWS — Computer Foundations: Networking', issuer: 'Amazon Web Services', year: '2025' },
   { name: 'Netflix Clone — React JS', issuer: 'Eudonix', year: '2022' },
   { name: 'JavaScript Developer Certificate', issuer: 'SoloLearn', year: '2017' },
-  { name: 'Information Systems Engineering', issuer: 'CTI', year: '2017' },
-  { name: 'Java SE 7 Fundamentals (Ed 2)', issuer: 'Oracle / Standard Bank', year: '2016' },
-  { name: 'Java SE 7 Programming (Ed 2)', issuer: 'Oracle / Standard Bank', year: '2016' },
   { name: 'Java Programming Fundamentals', issuer: 'Standard Bank Training', year: '2014' },
   { name: 'UNIX/LINUX Fundamentals', issuer: 'Standard Bank Training', year: '2014' },
   { name: 'Visual C# Fundamentals', issuer: 'Standard Bank Training', year: '2013' },
   { name: 'COBOL Programming', issuer: 'Standard Bank Training', year: '2013' },
+  { name: 'Java SE 7 Fundamentals (Ed 2)', issuer: 'Oracle / Standard Bank', year: '2012' },
+  { name: 'Java SE 7 Programming (Ed 2)', issuer: 'Oracle / Standard Bank', year: '2012' },
   { name: 'DB2 SQL Fundamentals & Application', issuer: 'Standard Bank Training', year: '2012' },
   { name: 'Java EE Programming, Java SE Fundamentals', issuer: 'Standard Bank Training', year: '2012' },
   { name: 'Job Control Language (JCL) & Mainframe/MVS', issuer: 'Standard Bank Training', year: '2012' },
+  { name: 'Information Systems Engineering', issuer: 'CTI', year: '2005' },
 ];
 
 export const projects = [

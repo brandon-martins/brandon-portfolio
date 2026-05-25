@@ -52,7 +52,7 @@ export default function About() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="border border-border rounded-[4px] overflow-hidden">
+          <FadeIn delay={0.2} className="border border-border rounded-sm overflow-hidden">
             <div className="bg-accent-dim webify-card-header px-6 py-5 flex justify-between items-center">
               <span className="font-display font-bold text-accent text-[1.1rem]">Webify (Pty) Ltd</span>
               <span className="tag-pill">2019 – Present</span>

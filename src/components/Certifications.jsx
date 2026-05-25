@@ -27,7 +27,7 @@ export default function Certifications() {
 
         <FadeIn delay={0.1} className="grid-auto-260 gap-4 mb-16">
           {education.map((edu, i) => (
-            <div key={i} className="bg-accent-dim border border-accent rounded-[4px] p-5 md:p-6">
+            <div key={i} className="bg-accent-dim border border-accent rounded-sm p-5 md:p-6">
               <div className="font-mono uppercase text-accent text-[0.68rem] tracking-[0.12em] mb-2">{edu.year}</div>
               <div className="font-display font-bold text-text text-[1.05rem] md:text-[1.1rem] leading-snug mb-1">{edu.degree}</div>
               {edu.grade && <div className="font-mono text-accent-bright text-[0.75rem] mb-1">Grade: {edu.grade}</div>}

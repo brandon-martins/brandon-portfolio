@@ -30,7 +30,7 @@ function SkillBar({ name, delay = 0 }) {
       viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="flex justify-between mb-[5px] font-mono text-[0.75rem] tracking-[0.04em]">
+      <div className="flex justify-between mb-1.25 font-mono text-[0.75rem] tracking-[0.04em]">
         <span className="text-text">{name}</span>
         <span className="text-muted">{pct}%</span>
       </div>
@@ -46,7 +46,7 @@ function CatHeader({ cat }) {
   return (
     <div className="flex items-center gap-2 mb-6 pb-3 border-b border-border">
       <span className="text-accent text-[0.9rem]">{icons[cat]}</span>
-      <span className="font-mono uppercase text-text text-[0.75rem] tracking-[0.1em]">{cat}</span>
+      <span className="font-mono uppercase text-text text-[0.75rem] tracking-widest">{cat}</span>
     </div>
   );
 }
@@ -59,7 +59,7 @@ export default function Skills() {
         <FadeIn className="mb-14">
           <span className="eyebrow">03 — Skills</span>
           <h2 className="section-heading">Technical Stack</h2>
-          <p className="text-muted mt-3 max-w-[520px]">
+          <p className="text-muted mt-3 max-w-130">
             A breadth of languages, frameworks, and platforms built over 15 years of enterprise and product work.
           </p>
         </FadeIn>
@@ -75,10 +75,10 @@ export default function Skills() {
 
         <div className="grid-auto-260 gap-6">
           {['Cloud & DevOps', 'CMS & Platforms', 'Other'].map((cat, i) => (
-            <FadeIn key={cat} delay={i * 0.1} className="border border-border rounded-[4px] p-5 md:p-6 bg-surface-2">
+            <FadeIn key={cat} delay={i * 0.1} className="border border-border rounded-sm p-5 md:p-6 bg-surface-2">
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-accent">{icons[cat]}</span>
-                <span className="font-mono uppercase text-text text-[0.72rem] tracking-[0.1em]">{cat}</span>
+                <span className="font-mono uppercase text-text text-[0.72rem] tracking-widest">{cat}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {skills[cat].map(s => <span key={s} className="tag-pill">{s}</span>)}

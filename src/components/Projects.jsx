@@ -3,7 +3,7 @@ import { projects } from '../utils/data.js';
 
 function ProjectCard({ project, index }) {
   return (
-    <FadeIn delay={index * 0.08} className="card-lift border border-border rounded-[4px] p-6 md:p-8 bg-surface-2 relative overflow-hidden cursor-default">
+    <FadeIn delay={index * 0.08} className="card-lift border border-border rounded-sm p-6 md:p-8 bg-surface-2 relative overflow-hidden cursor-default">
       <div className="absolute top-[-10px] right-5 font-display font-black text-[5rem] md:text-[6rem] leading-none pointer-events-none select-none opacity-50 text-dim">
         {String(index + 1).padStart(2, '0')}
       </div>
@@ -27,7 +27,7 @@ export default function Projects() {
         <FadeIn className="mb-14">
           <span className="eyebrow">04 — Projects</span>
           <h2 className="section-heading">Selected Work</h2>
-          <p className="text-muted mt-3 max-w-[520px]">
+          <p className="text-muted mt-3 max-w-130">
             A selection of projects spanning enterprise banking, NGO systems, and commercial web development.
           </p>
         </FadeIn>
@@ -36,7 +36,7 @@ export default function Projects() {
           {projects.map((p, i) => <ProjectCard key={i} project={p} index={i} />)}
         </div>
 
-        <FadeIn className="flex flex-wrap items-center justify-between gap-4 p-5 md:p-6 rounded-[4px] border border-dashed border-border">
+        <FadeIn className="flex flex-wrap items-center justify-between gap-4 p-5 md:p-6 rounded-sm border border-dashed border-border">
           <div>
             <div className="font-mono text-muted text-[0.72rem] tracking-[0.06em] mb-1">More work available at</div>
             <div className="font-display font-bold text-accent text-[1.1rem]">www.webify.org.za</div>
