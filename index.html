@@ -47,6 +47,14 @@
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!--
+      theme-color: tells the browser chrome (address bar, status bar on mobile)
+      what colour to use. The default here matches the dark theme --color-bg.
+      useTheme.js updates this dynamically on every theme change via:
+        document.querySelector('meta[name="theme-color"]').content = ...
+    -->
+    <meta name="theme-color" content="#0a0a0a" />
   </head>
   <body>
     <div id="root"></div>

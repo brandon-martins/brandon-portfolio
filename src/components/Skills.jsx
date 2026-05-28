@@ -11,12 +11,24 @@ const icons = {
   'Other':           '○',
 };
 
+/**
+ * Proficiency map — keys must exactly match the skill names in data.js.
+ * Previously included 'JSP' which was not in the Back-End skills array;
+ * replaced with 'Express' which is the actual entry. Any skill missing from
+ * this map falls back to 75% via the `?? 75` default in SkillBar.
+ */
 const proficiency = {
+  // Front-End
   'JavaScript': 95, 'React': 90, 'HTML5': 98, 'CSS3': 92, 'Progressive Web Apps': 80,
-  'PHP': 88, 'Java': 85, 'Node.js': 78, 'C#': 70, 'JSP': 72,
+  // Back-End — 'Express' added, stale 'JSP' removed
+  'PHP': 88, 'Java': 85, 'Node.js': 78, 'Express': 80, 'C#': 70,
+  // Databases
   'MySQL': 88, 'MongoDB': 78, 'DB2': 75, 'SQL': 90,
+  // Cloud & DevOps
   'AWS': 80, 'Linux': 82, 'cPanel': 88, 'Git': 85, 'cPanel Hosting': 90,
+  // CMS & Platforms
   'WordPress': 90, 'Custom CMS': 85, 'E-commerce Platforms': 82,
+  // Other
   'SEO': 80, 'Digital Marketing': 75, 'IT Consulting': 88, 'Agile / SDLC': 85,
 };
 

@@ -183,35 +183,80 @@ export const certifications = [
 	{ name: 'Information Systems Engineering', issuer: 'CTI', year: '2005' },
 ];
 
+/**
+ * Projects data
+ *
+ * Recommended count: 6–8 projects is the industry sweet spot for a senior
+ * developer portfolio. Enough to show range across domains and tech stacks,
+ * not so many that it dilutes impact. Prioritise quality over quantity —
+ * each entry should demonstrate a different skill, sector, or problem.
+ *
+ * Fields:
+ *   name        — project title
+ *   description — 1–2 sentence summary; focus on the problem solved, not just the tech
+ *   year        — delivery or completion year
+ *   tags        — tech stack / domain tags (keep to 3–5 per project)
+ *   url         — live site URL, or null if unavailable
+ *   github      — public repo URL, or null if private/NDA
+ *   status      — 'live' | 'nda' | 'internal' | 'archived'
+ *                 Drives the link rendering in ProjectCard
+ */
 export const projects = [
 	{
 		name: 'Troops Security Services Website',
 		description:
-			'Corporate website for a security services firm — custom-built, responsive, and brand-aligned.',
+			'Corporate website for a security services firm — custom-built, responsive, and brand-aligned. Delivered full design-to-deployment including mobile optimisation and SEO setup.',
 		year: '2021',
 		tags: ['Web Development', 'UI Design', 'Responsive'],
+		url: null,       // TODO: add live URL if still active e.g. 'https://troops.co.za'
+		github: null,    // Client project — private repo
+		status: 'nda',   // Mark as NDA so the card renders the appropriate badge
 	},
 	{
 		name: 'DigiView NPO Registration & Login System',
 		description:
-			'Full-stack system for NGO/NPO registration management, built for Bridgeway Communications.',
+			'Full-stack system for NGO/NPO registration management, built for Bridgeway Communications. Handles multi-role auth, document uploads, and admin review workflows.',
 		year: '2021',
 		tags: ['Full Stack', 'PHP', 'MySQL', 'Java'],
+		url: null,
+		github: null,
+		status: 'internal',
 	},
 	{
 		name: 'End-User Computer Training Module',
 		description:
-			'Java-based training application developed for enterprise use at Bridgeway Communications.',
+			'Java-based training application developed for enterprise use at Bridgeway Communications. Delivered interactive assessments and progress tracking for internal staff.',
 		year: '2018',
 		tags: ['Java', 'Enterprise', 'Training Tech'],
+		url: null,
+		github: null,
+		status: 'internal',
 	},
 	{
 		name: 'SBG Customer 1st Application',
 		description:
-			'Customer-centric banking application at Standard Bank, built for Mobile and Internet Banking channels.',
+			'Customer-centric banking application at Standard Bank Group, built for Mobile and Internet Banking channels. Worked across full SDLC from spec through to production deployment.',
 		year: '2014',
 		tags: ['Banking', 'Java', 'Mobile', 'Standard Bank'],
+		url: null,
+		github: null,
+		status: 'nda',
 	},
+	// ─── ADD MORE PROJECTS BELOW ───────────────────────────────────────────────
+	// Aim for 6–8 total. Good candidates to add:
+	//   • A Webify client e-commerce build (shows commercial full-stack work)
+	//   • A personal/open-source project (gives recruiters a GitHub link to click)
+	//   • The Maxipharma IT infrastructure work (shows non-dev leadership)
+	// Example shape:
+	// {
+	//   name: 'Webify Client E-commerce Store',
+	//   description: 'WooCommerce-based store with custom PHP checkout and MySQL inventory.',
+	//   year: '2023',
+	//   tags: ['E-commerce', 'PHP', 'WordPress', 'MySQL'],
+	//   url: 'https://example.co.za',
+	//   github: null,
+	//   status: 'live',
+	// },
 ];
 
 export const services = [

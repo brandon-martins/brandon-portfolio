@@ -27,7 +27,10 @@ const BackToTopButton = () => {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Back to top"
-      className="fixed bottom-6 right-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-accent-dim text-white shadow-lg hover:scale-110 hover:opacity-90 transition-all duration-300"
+      /* Use text-text (CSS variable) instead of text-white so the icon stays
+         legible in both dark and light themes. bg-accent-dim also responds to
+         the theme token, so no additional override is needed here. */
+      className="fixed bottom-6 right-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-accent-dim text-text shadow-lg hover:scale-110 hover:opacity-90 transition-all duration-300"
     >
       <ChevronUpIcon className="w-5 h-5" />
     </button>
