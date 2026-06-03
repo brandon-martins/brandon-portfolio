@@ -1,27 +1,28 @@
 import { useState } from 'react';
 import FadeIn from './FadeIn.jsx';
 import { personal } from '../utils/data.js';
+import { Mail, Phone, Globe, MapPin, Check, ArrowRight } from 'lucide-react';
 
 const contactItems = [
 	{
-		icon: '✉',
+		icon: Mail,
 		label: 'Email',
 		value: personal.email,
 		href: `mailto:${personal.email}`,
 	},
 	{
-		icon: '☎',
+		icon: Phone,
 		label: 'Phone',
 		value: personal.phone,
 		href: `tel:+27615803040`,
 	},
 	{
-		icon: '◈',
+		icon: Globe,
 		label: 'Website',
 		value: personal.website,
 		href: `https://${personal.website}`,
 	},
-	{ icon: '◉', label: 'Location', value: personal.location, href: null },
+	{ icon: MapPin, label: 'Location', value: personal.location, href: null },
 ];
 
 const formFields = [
@@ -82,12 +83,14 @@ export default function Contact() {
 					{/* Info column */}
 					<FadeIn delay={0.1}>
 						<div className="flex flex-col gap-4 mb-8">
-							{contactItems.map(({ icon, label, value, href }) => (
+							{contactItems.map(({ icon: Icon, label, value, href }) => (
 								<div
 									key={label}
 									className="contact-card flex gap-4 items-start p-4 md:p-5"
 								>
-									<div className="contact-icon-box">{icon}</div>
+									<div className="contact-icon-box">
+										<Icon className="w-4 h-4" />
+									</div>
 									<div>
 										<div className="font-mono uppercase text-muted text-[0.65rem] tracking-widest mb-0.75">
 											{label}
@@ -174,7 +177,17 @@ export default function Contact() {
 								type="submit"
 								className={`btn-primary justify-center ${sent ? 'btn-sent' : ''}`}
 							>
-								{sent ? '✓ Opening Mail Client' : 'Send Message →'}
+								{sent ? (
+									<>
+										<Check className="w-4 h-4" />
+										Opening Mail Client
+									</>
+								) : (
+									<>
+										Send Message
+										<ArrowRight className="w-4 h-4" />
+									</>
+								)}
 							</button>
 							<p className="font-mono text-dim text-[0.65rem] tracking-[0.04em]">
 								This will open your mail client. You can also email directly:{' '}

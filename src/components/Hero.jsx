@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { personal } from '../utils/data.js';
+import { Diamond, ArrowRight } from 'lucide-react';
 
 const ticker = [
   'Full Stack Developer', 'React · PHP · Java · Node.js', '15+ Years Experience',
@@ -36,7 +37,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.1, ease }}
           className="mb-6"
         >
-          <span className="eyebrow">◆ Full Stack Developer &amp; Digital Solutions Founder</span>
+          <span className="eyebrow flex items-center gap-2">
+            <Diamond className="w-3 h-3 text-accent" />
+            Full Stack Developer &amp; Digital Solutions Founder
+          </span>
         </motion.div>
 
         <motion.h1
@@ -70,7 +74,7 @@ export default function Hero() {
         >
           <a href="#contact" className="btn-primary"
              onClick={e => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            Get In Touch <span>→</span>
+            Get In Touch <ArrowRight className="w-4 h-4" />
           </a>
           <a href="#experience" className="btn-outline"
              onClick={e => { e.preventDefault(); document.querySelector('#experience')?.scrollIntoView({ behavior: 'smooth' }); }}>
@@ -100,8 +104,8 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 border-t border-border py-[10px] overflow-hidden bg-surface">
         <div className="animate-marquee flex whitespace-nowrap">
           {[...ticker, ...ticker].map((item, i) => (
-            <span key={i} className="font-mono uppercase text-muted text-[0.7rem] tracking-widest px-10">
-              {item}<span className="text-accent ml-10">◆</span>
+            <span key={i} className="font-mono uppercase text-muted text-[0.7rem] tracking-widest px-10 flex items-center gap-10">
+              {item}<Diamond className="w-2.5 h-2.5 text-accent" />
             </span>
           ))}
         </div>

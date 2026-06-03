@@ -1,10 +1,11 @@
 import FadeIn from './FadeIn.jsx';
 import { personal, services } from '../utils/data.js';
+import { MapPin, Phone, Globe } from 'lucide-react';
 
 const contactItems = [
-  { icon: '📍', text: personal.location },
-  { icon: '📞', text: personal.phone },
-  { icon: '🌐', text: personal.website },
+  { icon: MapPin,  text: personal.location },
+  { icon: Phone,   text: personal.phone },
+  { icon: Globe,   text: personal.website },
 ];
 
 const companyMeta = [
@@ -46,8 +47,11 @@ export default function About() {
               bringing enterprise-level quality standards to the South African SME market.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
-              {contactItems.map(({ icon, text }) => (
-                <div key={text} className="contact-pill"><span>{icon}</span><span>{text}</span></div>
+              {contactItems.map(({ icon: Icon, text }) => (
+                <div key={text} className="contact-pill">
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span>{text}</span>
+                </div>
               ))}
             </div>
           </FadeIn>

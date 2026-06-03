@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FadeIn from './FadeIn.jsx';
 import { experience } from '../utils/data.js';
+import { Plus, Minus, ArrowRight } from 'lucide-react';
 
 function ExperienceCard({ job, index }) {
 	const [open, setOpen] = useState(index === 0);
@@ -32,9 +33,9 @@ function ExperienceCard({ job, index }) {
 					</div>
 				</div>
 				<span
-					className={`font-mono text-accent text-[1.1rem] mt-1 inline-block transition-transform duration-300 ${open ? 'acc-icon-open' : 'acc-icon-closed'}`}
+					className={`text-accent mt-1 inline-flex transition-transform duration-300 ${open ? 'acc-icon-open' : 'acc-icon-closed'}`}
 				>
-					+
+					<Plus className="w-4 h-4" />
 				</span>
 			</button>
 
@@ -54,7 +55,7 @@ function ExperienceCard({ job, index }) {
 									key={i}
 									className="flex gap-3 text-muted text-[0.93rem] leading-[1.7]"
 								>
-									<span className="text-accent shrink-0 mt-0.5">→</span>
+									<ArrowRight className="w-4 h-4 text-accent shrink-0 mt-[0.2rem]" />
 									<span>{h}</span>
 								</li>
 							))}

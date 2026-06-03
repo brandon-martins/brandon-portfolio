@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
 import FadeIn from './FadeIn.jsx';
 import { skills } from '../utils/data.js';
+import { Monitor, Server, Database, Cloud, Layout, Circle } from 'lucide-react';
 
-const icons = {
-  'Front-End':       '◈',
-  'Back-End':        '◉',
-  'Databases':       '◎',
-  'Cloud & DevOps':  '◆',
-  'CMS & Platforms': '◇',
-  'Other':           '○',
+const categoryIcons = {
+  'Front-End':       Monitor,
+  'Back-End':        Server,
+  'Databases':       Database,
+  'Cloud & DevOps':  Cloud,
+  'CMS & Platforms': Layout,
+  'Other':           Circle,
 };
 
 /**
@@ -55,9 +56,10 @@ function SkillBar({ name, delay = 0 }) {
 }
 
 function CatHeader({ cat }) {
+  const Icon = categoryIcons[cat] ?? Circle;
   return (
     <div className="flex items-center gap-2 mb-6 pb-3 border-b border-border">
-      <span className="text-accent text-[0.9rem]">{icons[cat]}</span>
+      <Icon className="w-4 h-4 text-accent shrink-0" />
       <span className="font-mono uppercase text-text text-[0.75rem] tracking-widest">{cat}</span>
     </div>
   );
@@ -86,17 +88,20 @@ export default function Skills() {
         </div>
 
         <div className="grid-auto-260 gap-6">
-          {['Cloud & DevOps', 'CMS & Platforms', 'Other'].map((cat, i) => (
-            <FadeIn key={cat} delay={i * 0.1} className="border border-border rounded-sm p-5 md:p-6 bg-surface-2">
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-accent">{icons[cat]}</span>
-                <span className="font-mono uppercase text-text text-[0.72rem] tracking-widest">{cat}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skills[cat].map(s => <span key={s} className="tag-pill">{s}</span>)}
-              </div>
-            </FadeIn>
-          ))}
+          {['Cloud & DevOps', 'CMS & Platforms', 'Other'].map((cat, i) => {
+            const Icon = categoryIcons[cat] ?? Circle;
+            return (
+              <FadeIn key={cat} delay={i * 0.1} className="border border-border rounded-sm p-5 md:p-6 bg-surface-2">
+                <div className="flex items-center gap-2 mb-5">
+                  <Icon className="w-4 h-4 text-accent shrink-0" />
+                  <span className="font-mono uppercase text-text text-[0.72rem] tracking-widest">{cat}</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills[cat].map(s => <span key={s} className="tag-pill">{s}</span>)}
+                </div>
+              </FadeIn>
+            );
+          })}
         </div>
       </div>
     </section>

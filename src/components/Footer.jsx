@@ -1,5 +1,6 @@
 import { useTheme } from '../hooks/useTheme.jsx';
 import { personal } from '../utils/data.js';
+import { Sun, Moon } from 'lucide-react';
 
 const navLinks = ['about', 'experience', 'skills', 'projects', 'certifications', 'contact'];
 
@@ -46,14 +47,17 @@ export default function Footer() {
             Built with React · Vite · Tailwind CSS
           </div>
 
-          {/* Theme toggle — PrebuiltUI-inspired pill */}
+          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
             className="theme-toggle"
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           >
             <span className="theme-toggle-icon" key={theme}>
-              {isDark ? '☀' : '☽'}
+              {isDark
+                ? <Sun className="w-3.5 h-3.5" />
+                : <Moon className="w-3.5 h-3.5" />
+              }
             </span>
             <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
           </button>
