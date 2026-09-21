@@ -105,7 +105,7 @@ export const experience = [
 export const education = [
 	{
 		degree: 'Information Systems Engineering',
-		grade: 'Credit',
+		grade: 'Certficate',
 		institution: 'Computer Training Institute (CTI)',
 		year: '2005',
 	},
