@@ -406,12 +406,15 @@
 		gap: 1rem;
 		align-items: start;
 	}
-	.exp-timeline-grid {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0 2.5rem;
-	}
+	/* Each row = [spine column | content]. The spine column stretches to the
+	   row's height, so it follows the accordion open/close animation. */
 	.exp-row {
+		display: flex;
+		column-gap: 2.5rem;
+	}
+	.exp-content {
+		flex: 1;
+		min-width: 0;
 		border-bottom: 1px solid var(--color-border);
 	}
 
@@ -421,7 +424,6 @@
 		height: 10px;
 		border-radius: 50%;
 		flex-shrink: 0;
-		margin-top: 2px;
 		background: var(--color-border);
 		border: 2px solid var(--color-border);
 	}
@@ -429,15 +431,26 @@
 		background: var(--color-accent);
 		border-color: var(--color-accent-bright);
 	}
+	/* Short connector above the dot (aligns the dot with the job title) */
+	.spine-lead {
+		width: 1px;
+		flex: 0 0 2.07rem;
+		background: var(--color-border);
+	}
+	.spine-lead-hidden {
+		background: transparent; /* no line above the first dot */
+	}
+	/* Stretches to fill whatever height the card currently has */
 	.spine-line {
 		width: 1px;
-		flex: 1;
-		min-height: 60px;
-		background: linear-gradient(
-			to bottom,
-			var(--color-accent-dim),
-			var(--color-border)
-		);
+		flex: 1 1 0;
+		min-height: 0;
+		background: var(--color-border);
+	}
+	@media (min-width: 768px) {
+		.spine-lead {
+			flex-basis: 2.65rem; /* button uses md:py-8 here, so the title sits lower */
+		}
 	}
 
 	/* Accordion icon state */

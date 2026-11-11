@@ -4,65 +4,75 @@ import FadeIn from './FadeIn.jsx';
 import { experience } from '../utils/data.js';
 import { Plus, ArrowRight } from 'lucide-react';
 
-function ExperienceCard({ job, index }) {
+function ExperienceCard({ job, index, isFirst, isLast }) {
 	const [open, setOpen] = useState(index === 0);
 
 	return (
 		<FadeIn delay={index * 0.07} className="exp-row">
-			<button
-				onClick={() => setOpen(!open)}
-				className="exp-btn-grid w-full bg-transparent border-none cursor-pointer py-6 md:py-8 text-left"
-			>
-				<div>
-					<div className="flex items-center gap-3 flex-wrap mb-[0.4rem]">
-						<h3 className="font-display font-bold text-text text-[1.1rem] md:text-[1.2rem] tracking-[-0.01em]">
-							{job.role}
-						</h3>
-						<span className="tag-pill">{job.type}</span>
-					</div>
-					<div className="flex flex-wrap gap-x-4 gap-y-1">
-						<span className="font-mono text-accent text-[0.78rem] tracking-[0.04em]">
-							{job.company}
-						</span>
-						<span className="font-mono text-muted text-[0.75rem]">
-							· {job.period}
-						</span>
-						<span className="font-mono text-dim   text-[0.75rem]">
-							{job.location}
-						</span>
-					</div>
-				</div>
-				<span
-					className={`text-accent mt-1 inline-flex transition-transform duration-300 ${open ? 'acc-icon-open' : 'acc-icon-closed'}`}
-				>
-					<Plus className="w-4 h-4" />
-				</span>
-			</button>
+			{/* Spine segment (sm+): stretches to this card's full height */}
+			<div className="hidden sm:flex flex-col items-center shrink-0">
+				<div className={`spine-lead ${isFirst ? 'spine-lead-hidden' : ''}`} />
+				<div className={`spine-dot ${isFirst ? 'spine-dot-active' : ''}`} />
+				{!isLast && <div className="spine-line" />}
+			</div>
 
-			<AnimatePresence initial={false}>
-				{open && (
-					<motion.div
-						key="content"
-						initial={{ opacity: 0, height: 0 }}
-						animate={{ opacity: 1, height: 'auto' }}
-						exit={{ opacity: 0, height: 0 }}
-						transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-						className="overflow-hidden"
+			{/* Content */}
+			<div className="exp-content">
+				<button
+					onClick={() => setOpen(!open)}
+					className="exp-btn-grid w-full bg-transparent border-none cursor-pointer py-6 md:py-8 text-left"
+				>
+					<div>
+						<div className="flex items-center gap-3 flex-wrap mb-[0.4rem]">
+							<h3 className="font-display font-bold text-text text-[1.1rem] md:text-[1.2rem] tracking-[-0.01em]">
+								{job.role}
+							</h3>
+							<span className="tag-pill">{job.type}</span>
+						</div>
+						<div className="flex flex-wrap gap-x-4 gap-y-1">
+							<span className="font-mono text-accent text-[0.78rem] tracking-[0.04em]">
+								{job.company}
+							</span>
+							<span className="font-mono text-muted text-[0.75rem]">
+								· {job.period}
+							</span>
+							<span className="font-mono text-dim   text-[0.75rem]">
+								{job.location}
+							</span>
+						</div>
+					</div>
+					<span
+						className={`text-accent mt-1 inline-flex transition-transform duration-300 ${open ? 'acc-icon-open' : 'acc-icon-closed'}`}
 					>
-						<ul className="flex flex-col gap-[0.6rem] list-none pb-8">
-							{job.highlights.map((h, i) => (
-								<li
-									key={i}
-									className="flex gap-3 text-muted text-[0.93rem] leading-[1.7]"
-								>
-									<ArrowRight className="w-4 h-4 text-accent shrink-0 mt-[0.2rem]" />
-									<span>{h}</span>
-								</li>
-							))}
-						</ul>
-					</motion.div>
-				)}
-			</AnimatePresence>
+						<Plus className="w-4 h-4" />
+					</span>
+				</button>
+
+				<AnimatePresence initial={false}>
+					{open && (
+						<motion.div
+							key="content"
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: 'auto' }}
+							exit={{ opacity: 0, height: 0 }}
+							transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+							className="overflow-hidden"
+						>
+							<ul className="flex flex-col gap-[0.6rem] list-none pb-8">
+								{job.highlights.map((h, i) => (
+									<li
+										key={i}
+										className="flex gap-3 text-muted text-[0.93rem] leading-[1.7]"
+									>
+										<ArrowRight className="w-4 h-4 text-accent shrink-0 mt-[0.2rem]" />
+										<span>{h}</span>
+									</li>
+								))}
+							</ul>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</div>
 		</FadeIn>
 	);
 }
@@ -80,23 +90,16 @@ export default function Experience() {
 					</p>
 				</FadeIn>
 
-				<div className="exp-timeline-grid">
-					{/* Spine — hidden on very small screens, shown sm+ */}
-					<div className="hidden sm:flex flex-col items-center pt-[2.1rem]">
-						{experience.map((_, i) => (
-							<div key={i} className="flex flex-col items-center flex-1">
-								<div
-									className={`spine-dot ${i === 0 ? 'spine-dot-active' : ''}`}
-								/>
-								{i < experience.length - 1 && <div className="spine-line" />}
-							</div>
-						))}
-					</div>
-					<div>
-						{experience.map((job, i) => (
-							<ExperienceCard key={i} job={job} index={i} />
-						))}
-					</div>
+				<div>
+					{experience.map((job, i) => (
+						<ExperienceCard
+							key={i}
+							job={job}
+							index={i}
+							isFirst={i === 0}
+							isLast={i === experience.length - 1}
+						/>
+					))}
 				</div>
 
 				{/* Calc based on width of [spine-dot + gap] - sm:pl-[calc(10px+2.5rem)] */}
