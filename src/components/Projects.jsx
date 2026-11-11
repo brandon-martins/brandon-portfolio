@@ -61,9 +61,9 @@ function ProjectLinks({ url, github }) {
 					href={url}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="btn-accent-outline text-[0.68rem] py-[6px] px-4"
+					className="btn-accent-outline text-[0.68rem] py-1.5 px-4"
 				>
-					View Site <ArrowRight className="w-4 h-4" />
+					View Site <ArrowRight className="btn-arrow w-4 h-4" />
 				</a>
 			)}
 			{github && (
@@ -71,9 +71,9 @@ function ProjectLinks({ url, github }) {
 					href={github}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="btn-outline text-[0.68rem] py-[6px] px-4"
+					className="btn-outline text-[0.68rem] py-1.5 px-4"
 				>
-					GitHub →
+					GitHub <ArrowRight className="btn-arrow w-4 h-4" />
 				</a>
 			)}
 		</div>
@@ -164,7 +164,7 @@ export default function Projects() {
 						rel="noopener noreferrer"
 						className="btn-accent-outline"
 					>
-						Visit Webify <ArrowRight className="w-4 h-4" />
+						Visit Webify <ArrowRight className="btn-arrow w-4 h-4" />
 					</a>
 				</FadeIn>
 			</div>

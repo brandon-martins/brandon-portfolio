@@ -100,7 +100,7 @@ export default function Hero() {
 								?.scrollIntoView({ behavior: 'smooth' });
 						}}
 					>
-						Get In Touch <ArrowRight className="w-4 h-4" />
+						Get In Touch <ArrowRight className="btn-arrow w-4 h-4" />
 					</a>
 					<a
 						href="#experience"
@@ -116,7 +116,7 @@ export default function Hero() {
 					</a>
 					<div className="badge-available">
 						<span className="dot-green" />
-						<span className="font-mono uppercase text-green text-[0.68rem] tracking-[0.08em]">
+						<span className="font-mono uppercase text-green text-[0.68rem] tracking-[0.08em] select-none">
 							Available for Work
 						</span>
 					</div>

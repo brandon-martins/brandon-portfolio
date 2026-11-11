@@ -20,11 +20,11 @@ function ExperienceCard({ job, index, isFirst, isLast }) {
 			<div className="exp-content">
 				<button
 					onClick={() => setOpen(!open)}
-					className="exp-btn-grid w-full bg-transparent border-none cursor-pointer py-6 md:py-8 text-left"
+					className="group exp-btn-grid w-full bg-transparent border-none cursor-pointer py-6 md:py-8 text-left"
 				>
 					<div>
 						<div className="flex items-center gap-3 flex-wrap mb-[0.4rem]">
-							<h3 className="font-display font-bold text-text text-[1.1rem] md:text-[1.2rem] tracking-[-0.01em]">
+							<h3 className="font-display font-bold text-text group-hover:text-accent transition-colors duration-200 text-[1.1rem] md:text-[1.2rem] tracking-[-0.01em]">
 								{job.role}
 							</h3>
 							<span className="tag-pill">{job.type}</span>

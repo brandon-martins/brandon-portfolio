@@ -654,7 +654,30 @@
 		color: #ffffff;
 	}
 	[data-theme='light'] .btn-primary:hover {
-		background: var(--color-accent);
+		background: var(--color-accent-bright);
+	}
+	[data-theme='light'] .btn-primary.btn-sent:hover {
+		background: var(--color-green);
+	}
+
+	/* Arrow icon inside buttons: keeps the button's text colour on hover
+	   (never picks up the background colour) and nudges right. */
+	.btn-arrow {
+		color: inherit;
+		flex-shrink: 0;
+		transition: transform 0.25s ease;
+	}
+	.btn-primary:hover .btn-arrow,
+	.btn-outline:hover .btn-arrow,
+	.btn-accent-outline:hover .btn-arrow {
+		transform: translateX(4px);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.btn-primary:hover .btn-arrow,
+		.btn-outline:hover .btn-arrow,
+		.btn-accent-outline:hover .btn-arrow {
+			transform: none;
+		}
 	}
 
 	.btn-outline {
@@ -801,6 +824,10 @@
 		border: 1px solid var(--color-border);
 		background: transparent;
 		color: var(--color-muted);
+	}
+	.filter-btn:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
 	}
 	.filter-btn.active {
 		border-color: var(--color-accent);

@@ -185,7 +185,7 @@ export default function Contact() {
 								) : (
 									<>
 										Send Message
-										<ArrowRight className="w-4 h-4" />
+										<ArrowRight className="btn-arrow w-4 h-4" />
 									</>
 								)}
 							</button>
