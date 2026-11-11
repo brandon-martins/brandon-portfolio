@@ -105,7 +105,7 @@ export const experience = [
 export const education = [
 	{
 		degree: 'Information Systems Engineering',
-		grade: 'Certficate',
+		grade: 'Certificate',
 		institution: 'Computer Training Institute (CTI)',
 		year: '2005',
 	},
@@ -208,9 +208,9 @@ export const projects = [
 			'Corporate website for a security services firm — custom-built, responsive, and brand-aligned. Delivered full design-to-deployment including mobile optimisation and SEO setup.',
 		year: '2021',
 		tags: ['Web Development', 'UI Design', 'Responsive'],
-		url: null,       // TODO: add live URL if still active e.g. 'https://troops.co.za'
-		github: null,    // Client project — private repo
-		status: 'nda',   // Mark as NDA so the card renders the appropriate badge
+		url: null, // TODO: add live URL if still active e.g. 'https://troops.co.za'
+		github: null, // Client project — private repo
+		status: 'nda', // Mark as NDA so the card renders the appropriate badge
 	},
 	{
 		name: 'DigiView NPO Registration & Login System',

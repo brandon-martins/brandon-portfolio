@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FadeIn from './FadeIn.jsx';
 import { experience } from '../utils/data.js';
-import { Plus, Minus, ArrowRight } from 'lucide-react';
+import { Plus, ArrowRight } from 'lucide-react';
 
 function ExperienceCard({ job, index }) {
 	const [open, setOpen] = useState(index === 0);

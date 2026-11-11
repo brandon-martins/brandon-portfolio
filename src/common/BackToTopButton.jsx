@@ -27,9 +27,8 @@ const BackToTopButton = () => {
 		<button
 			onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 			aria-label="Back to top"
-			/* Colours live in index.css (.back-to-top-btn) so the button follows the
-         active theme: dark keeps the accent tokens, light uses a warm dark grey
-         (rest + darker hover). Only layout/motion utilities stay here. */
+			/* Colours come from .back-to-top-btn in index.css (theme tokens).
+         Only layout and motion utilities live here. */
 			className="back-to-top-btn fixed bottom-6 right-6 z-40 w-10 h-10 flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition-all duration-300"
 		>
 			<ChevronUpIcon className="w-5 h-5" />
