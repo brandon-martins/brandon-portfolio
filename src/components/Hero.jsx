@@ -115,7 +115,7 @@ export default function Hero() {
 						View Experience
 					</a>
 					<div className="badge-available">
-						<span className="dot-green animate-pulse-glow" />
+						<span className="dot-green" />
 						<span className="font-mono uppercase text-green text-[0.68rem] tracking-[0.08em]">
 							Available for Work
 						</span>
@@ -142,7 +142,7 @@ export default function Hero() {
 			</div>
 
 			{/* Ticker */}
-			<div className="absolute bottom-0 left-0 right-0 border-t border-border py-[10px] overflow-hidden bg-surface">
+			<div className="absolute bottom-0 left-0 right-0 border-t border-border py-2.5 overflow-hidden bg-surface">
 				<div className="animate-marquee flex whitespace-nowrap">
 					{[...ticker, ...ticker].map((item, i) => (
 						<span
