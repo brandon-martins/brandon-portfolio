@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+# Same gates as local: format → lint → typecheck → test → build → Lighthouse. A failure at any step blocks the merge.
+# `npm ci` installs every workspace at once; the client/server `pre*` scripts build packages/shared before they need it.
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Lighthouse budget (≥ 90 in every category)
+        run: npx lhci autorun

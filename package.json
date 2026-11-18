@@ -1,0 +1,46 @@
+{
+	"name": "portfolio",
+	"private": true,
+	"version": "0.1.0",
+	"description": "Brandon Martins — personal portfolio (client + server + shared package)",
+	"author": "Brandon Martins",
+	"license": "MIT",
+	"homepage": "https://brandonmartins.co.za",
+	"workspaces": [
+		"client",
+		"server",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "npm run build -w @portfolio/shared && concurrently -n shared,client,server -c yellow,cyan,magenta \"npm run dev -w @portfolio/shared\" \"npm run dev -w client --ignore-scripts\" \"npm run dev -w server --ignore-scripts\"",
+		"build": "npm run build -w client && npm run build -w server",
+		"typecheck": "npm run typecheck -w @portfolio/shared && npm run typecheck -w client && npm run typecheck -w server",
+		"lint": "eslint .",
+		"test": "npm run test -w @portfolio/shared && npm run test -w client && npm run test -w server",
+		"lighthouse": "lhci autorun",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@lhci/cli": "^0.16.1",
+		"concurrently": "^10.0.7",
+		"eslint": "^10.14.0",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"globals": "^17.14.0",
+		"prettier": "^3.10.1",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.72.2",
+		"vitest": "^5.1.0"
+	},
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"type": "module",
+	"overrides": {
+		"react-helmet-async": {
+			"react": "^19.3.1",
+			"react-dom": "^19.3.1"
+		}
+	}
+}
