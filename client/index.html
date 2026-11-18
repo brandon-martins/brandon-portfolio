@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#F5F6F8" />
+		<!-- Favicon set: SVG for modern browsers (sharp at any size), .ico for older browsers and crawlers,
+         and a full-bleed PNG for iOS, which applies its own rounded corners. -->
+		<link rel="icon" href="/favicon.ico" sizes="48x48" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script>
+			// Apply the saved theme before first paint to avoid a flash.
+			try {
+				var t = localStorage.getItem('theme');
+				// Light is the default; only a saved "dark" needs applying before paint.
+				if (t === 'dark') {
+					document.documentElement.dataset.theme = 'dark';
+					document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0B0F17');
+				}
+			} catch (e) {}
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>

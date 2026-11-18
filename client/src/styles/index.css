@@ -1,0 +1,313 @@
+@import 'tailwindcss';
+/* Self-hosted variable fonts, the same three families as mockup A: Bricolage Grotesque (headings),
+   Geist (body), Geist Mono (eyebrows, dates, counts). */
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+/*
+ * Design tokens. Light is the default and mirrors mockup "A — Light, fresh" exactly.
+ * Dark has no mockup, so its values are derived from the same blue/ink system.
+ * Light is the default for everyone; dark only applies when the visitor chooses it (data-theme="dark").
+ */
+:root {
+	/* Surfaces: page, cards, and the tint used for placeholders and hover states */
+	--bg: #f5f6f8;
+	--surface: #ffffff;
+	--surface2: #e9edfb;
+	/* Text and borders: --line is for controls and dividers, --line-soft for card edges */
+	--ink: #0e1218;
+	--muted: #4b5563;
+	--line: #d5d9e0;
+	--line-soft: #e3e6eb;
+	/* Brand accent: links, selected lens, capstone chip, contact call-to-action */
+	--acc: #2f5bea;
+	--onacc: #ffffff;
+	/* Primary buttons are ink-filled and turn accent on hover, so they get their own pair */
+	--btn: #0e1218;
+	--onbtn: #ffffff;
+	/* Availability badge */
+	--ok: #1a7f4b;
+	--ok-bg: #e3f4ea;
+	--ok-ink: #145a37;
+	/* Form error text (the accent is blue now, so errors need their own colour) */
+	--err: #b42318;
+	/* Text on placeholder blocks (screenshots, portrait) */
+	--ph-ink: #3a4a7a;
+	/* Contact panel: a dark block in both themes, so it has tokens instead of hard-coded hex */
+	--panel: #0e1218;
+	--panel-ink: #ffffff;
+	--panel-muted: #b4bbc8;
+	color-scheme: light;
+}
+:root[data-theme='dark'] {
+	--bg: #0b0f17;
+	--surface: #131925;
+	--surface2: #1b2335;
+	--ink: #eef1f7;
+	--muted: #a3adbd;
+	--line: #2b3447;
+	--line-soft: #212a3b;
+	--acc: #7c9bff;
+	--onacc: #0b0f17;
+	--btn: #eef1f7;
+	--onbtn: #0b0f17;
+	--ok: #5bd68a;
+	--ok-bg: #12301f;
+	--ok-ink: #8ee6ae;
+	--err: #ff8a80;
+	--ph-ink: #9fb0da;
+	--panel: #18213a;
+	--panel-ink: #ffffff;
+	--panel-muted: #b4bbc8;
+	color-scheme: dark;
+}
+
+/* Exposes the tokens as Tailwind utilities (bg-surface, text-muted, border-line-soft ...). */
+@theme inline {
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-surface2: var(--surface2);
+	--color-ink: var(--ink);
+	--color-muted: var(--muted);
+	--color-line: var(--line);
+	--color-line-soft: var(--line-soft);
+	--color-acc: var(--acc);
+	--color-onacc: var(--onacc);
+	--color-ok: var(--ok);
+	--color-err: var(--err);
+	--color-panel: var(--panel);
+	--color-panel-ink: var(--panel-ink);
+	--color-panel-muted: var(--panel-muted);
+	--font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+}
+
+@layer base {
+	/* ── Appearance only. Layout (display, flex, gap, width, padding) stays in Tailwind at component level. ──
+ * Everything below sits in a cascade layer: `base` for element defaults and `components` for the design-system
+ * classes. Unlayered CSS would beat Tailwind utilities, forcing `!important` to override a class like .btn;
+ * inside a layer, a plain utility (border-panel-ink, p-0, h-14) wins as expected. */
+	/* Jumping to a section (nav, palette, CTAs) puts that section's top edge at the top of the screen, so the previous
+   section never peeks in above it. The breathing room above the heading is the section's own top padding,
+   --section-gap, and it is the single value to change if you want more or less space. */
+	:root {
+		--section-gap: 5rem;
+	}
+	@media (min-width: 768px) {
+		:root {
+			--section-gap: 8rem;
+		}
+	}
+	/* Reserve the scrollbar's width so opening a modal (which locks page scroll) doesn't shift the layout sideways. */
+	html {
+		scroll-behavior: smooth;
+		scrollbar-gutter: stable;
+	}
+	body {
+		background: var(--bg);
+		color: var(--ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+	}
+	/* Headings inherit colour so a dark parent (the contact panel) can recolour them without !important. */
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: inherit;
+	}
+	:focus-visible {
+		outline: 2px solid var(--acc);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+}
+
+@layer components {
+	/* Buttons are pills. Variants set colour only; icon/text alignment is added per use with Tailwind. */
+	.btn {
+		min-height: 44px;
+		padding: 12px 22px;
+		border: 1px solid transparent;
+		border-radius: 999px;
+		font: 600 15px var(--font-sans);
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			border-color 0.15s,
+			color 0.15s,
+			filter 0.15s;
+	}
+	.btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+	/* Primary: ink-filled, accent on hover (as in the mockup) */
+	.btn-primary {
+		background: var(--btn);
+		color: var(--onbtn);
+		border-color: var(--btn);
+	}
+	.btn-primary:hover:not(:disabled) {
+		background: var(--acc);
+		border-color: var(--acc);
+		color: var(--onacc);
+	}
+	.btn-secondary {
+		background: transparent;
+		color: var(--ink);
+		border-color: var(--ink);
+	}
+	.btn-secondary:hover {
+		background: var(--surface2);
+	}
+	.btn-accent {
+		background: var(--acc);
+		color: var(--onacc);
+		border-color: var(--acc);
+	}
+	.btn-accent:hover:not(:disabled) {
+		filter: brightness(1.08);
+	}
+	/* Toggle pills (filters, enquiry type, theme): quiet outline, ink-filled when aria-pressed. */
+	.btn-toggle {
+		background: transparent;
+		color: var(--ink);
+		border-color: var(--line);
+	}
+	.btn-toggle:hover {
+		background: var(--surface2);
+	}
+	.btn-toggle[aria-pressed='true'] {
+		background: var(--btn);
+		color: var(--onbtn);
+		border-color: var(--btn);
+	}
+	/* Lens choice: same as a toggle, but the selected state uses the accent colour. */
+	.btn-toggle-accent[aria-pressed='true'] {
+		background: var(--acc);
+		color: var(--onacc);
+		border-color: var(--acc);
+	}
+	/* Round icon-only button (theme toggle). Size is set with Tailwind at the call site. */
+	.icon-btn {
+		background: var(--surface);
+		color: var(--ink);
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background-color 0.15s;
+	}
+	.icon-btn:hover {
+		background: var(--surface2);
+	}
+
+	.card {
+		color: var(--ink);
+		background: var(--surface);
+		border: 1px solid var(--line-soft);
+		border-radius: 16px;
+		padding: 24px;
+	}
+	.tag {
+		padding: 6px 12px;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		font-size: 13px;
+		background: var(--surface);
+		color: var(--ink);
+	}
+	.tag-accent {
+		background: var(--acc);
+		border-color: var(--acc);
+		color: var(--onacc);
+	}
+	.badge-ok {
+		padding: 8px 14px;
+		border-radius: 999px;
+		background: var(--ok-bg);
+		color: var(--ok-ink);
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.meta {
+		font: 400 12px var(--font-mono);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+	.link {
+		color: var(--acc);
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.link:hover {
+		text-decoration: underline;
+	}
+	/* Stand-in for screenshots and the portrait until real images exist. */
+	.placeholder {
+		background: var(--surface2);
+		border-radius: 12px;
+		color: var(--ph-ink);
+		font: 400 12px var(--font-mono);
+	}
+	/* Single-colour brand logo drawn with a mask so it follows the text colour (see BrandIcon.tsx). */
+	.brand-icon {
+		background-color: currentColor;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+		-webkit-mask-size: contain;
+		mask-size: contain;
+	}
+
+	/* Scoped to the controls the design system owns; never bare `input` (see ui-composition.md). */
+	input[type='text'],
+	input[type='email'],
+	select,
+	textarea {
+		background: var(--surface);
+		color: var(--ink);
+		border: 1px solid var(--line);
+		border-radius: 10px;
+		padding: 0 14px;
+		font: 400 15px var(--font-sans);
+	}
+	input[type='text'],
+	input[type='email'],
+	select {
+		height: 44px;
+	}
+	textarea {
+		padding: 12px 14px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+/* Hides site chrome so /cv prints as a plain document. */
+@media print {
+	header,
+	footer,
+	.no-print {
+		display: none !important;
+	}
+	body {
+		background: #fff;
+		color: #000;
+	}
+}
