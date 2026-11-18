@@ -1,5 +1,11 @@
 # Brandon Martins — Portfolio
 
+[![CI](https://github.com/brandon-martins/brandon-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/brandon-martins/brandon-portfolio/actions/workflows/ci.yml)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue)
+![Node >=22.19](https://img.shields.io/badge/node-%3E%3D22.19-339933?logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)
+
 Personal portfolio for [brandonmartins.co.za](https://brandonmartins.co.za), built for two audiences — prospective employers and prospective clients — via the **Lens** concept: the visitor picks _Hire Brandon_, _Start a project_ or _Just look around_, and the page re-orders its sections and CTAs. Nothing is ever hidden.
 
 | Layer     | Tech                                                                                                                    |
