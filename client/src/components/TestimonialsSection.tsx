@@ -4,7 +4,7 @@ import SectionShell from './SectionShell';
 // Quotes from clients and colleagues. Keep real quotes only: placeholders read as an unfinished site.
 export default function TestimonialsSection() {
 	return (
-		<SectionShell id="testimonials" eyebrow="Kind words" title="What people say">
+		<SectionShell id="testimonials" eyebrow="Kind words" title="What people say" band>
 			<div className="grid grid-cols-[repeat(auto-fit,minmax(min(340px,100%),1fr))] gap-6">
 				{testimonials.map((t, i) => (
 					<figure key={i} className="card">
