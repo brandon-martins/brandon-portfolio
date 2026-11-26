@@ -65,6 +65,18 @@ export const projects: Project[] = [
 				'Internal multi-domain platform for Webify: staff workspace, client portal and billing.',
 		},
 	},
+	// TODO: dummy entry so the home page shows five cards (two wide, then three). Replace or delete it when the real projects
+	// are added; the layout itself is tested with dummy counts and does not depend on this.
+	{
+		slug: 'placeholder-project',
+		title: '[Placeholder project]',
+		type: 'Personal',
+		year: '[Year]',
+		summary: '[Problem, approach and outcome in one line]',
+		tech: ['[Tech]'],
+		links: {},
+		caseStudy: blankStudy,
+	},
 ];
 
 // Lookup helpers: getProject powers /projects/:slug, projectsUsing powers the skill → project counts.
