@@ -1,11 +1,14 @@
 import { RESPONSE_TIME } from '@portfolio/shared';
 import type { SiteConfig } from './types';
 
+// The public address, used everywhere on the site (contact section, command palette, CV, legal notices, footer link).
+const EMAIL = 'brandon.martins@webify.co.za';
+
 // Site-wide facts used by the header, hero, footer, contact section and CV page.
 export const siteConfig: SiteConfig = {
 	name: 'Brandon Martins',
 	domain: 'brandonmartins.co.za',
-	email: 'brandon.martins@webify.co.za',
+	email: EMAIL,
 	location: 'Johannesburg, South Africa',
 	availability: { open: true, label: 'Open to opportunities · Johannesburg' },
 	cvUrl: '/cv.pdf',
@@ -26,7 +29,7 @@ export const siteConfig: SiteConfig = {
 		}, // TODO
 		{
 			label: 'Email',
-			href: 'mailto:hello@brandonmartins.co.za',
+			href: `mailto:${EMAIL}`,
 			icon: 'email',
 		},
 		{ label: 'Webify', href: 'https://webify.org.za', icon: 'website' },
