@@ -2,8 +2,15 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import type { Project } from '../data';
 
-// One project tile, used on the home page grid and on /projects.
-export default function ProjectCard({ project: p }: { project: Project }) {
+// One project tile, used on the home page grid and on /projects. The title's heading level is a prop because the card sits
+// under a section <h2> on the home page (so <h3>) but directly under the page <h1> on /projects (so <h2>).
+export default function ProjectCard({
+	project: p,
+	headingLevel: Heading = 'h3',
+}: {
+	project: Project;
+	headingLevel?: 'h2' | 'h3';
+}) {
 	return (
 		<article className="card flex flex-col gap-3.5">
 			<div className="placeholder flex h-[210px] items-center justify-center">[Screenshot]</div>
@@ -12,7 +19,7 @@ export default function ProjectCard({ project: p }: { project: Project }) {
 				<span className={`tag ${p.type === 'Capstone' ? 'tag-accent' : ''}`}>{p.type}</span>
 				<span className="meta">{p.year}</span>
 			</div>
-			<h3 className="text-2xl leading-tight">{p.title}</h3>
+			<Heading className="text-2xl leading-tight">{p.title}</Heading>
 			<p className="text-[15px] leading-[1.55] text-muted">{p.summary}</p>
 			<ul className="flex flex-wrap gap-2" aria-label="Technology">
 				{p.tech.map((t) => (

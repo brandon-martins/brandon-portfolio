@@ -22,7 +22,7 @@ export default function Projects() {
 				aria-live="polite"
 			>
 				{results.map((p) => (
-					<ProjectCard key={p.slug} project={p} />
+					<ProjectCard key={p.slug} project={p} headingLevel="h2" />
 				))}
 			</div>
 			{results.length === 0 && <p className="mt-8 text-muted">No projects match these filters.</p>}
