@@ -7,12 +7,14 @@ import type { Project } from '../data';
 export default function ProjectCard({
 	project: p,
 	headingLevel: Heading = 'h3',
+	className = '',
 }: {
 	project: Project;
 	headingLevel?: 'h2' | 'h3';
+	className?: string;
 }) {
 	return (
-		<article className="card flex flex-col gap-3.5">
+		<article className={`card flex flex-col gap-3.5 ${className}`}>
 			<div className="placeholder flex h-[210px] items-center justify-center">[Screenshot]</div>
 			<div className="flex items-center gap-2">
 				{/* Capstones get the accent chip: they are the strongest proof for a hiring audience. */}
