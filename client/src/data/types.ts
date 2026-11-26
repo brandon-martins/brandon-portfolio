@@ -67,7 +67,7 @@ export interface Project {
 
 export interface Qualification {
 	id: string;
-	kind: 'Degree' | 'Certification';
+	kind: 'Degree' | 'Certification' | 'Course';
 	title: string;
 	issuer: string;
 	year: string;
