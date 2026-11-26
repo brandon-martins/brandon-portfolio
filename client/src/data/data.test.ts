@@ -85,4 +85,10 @@ describe('data layer integrity', () => {
 			[...years].sort((a, b) => b - a),
 		);
 	});
+
+	// The footer link and every other mailto must use the same address.
+	it('uses one email address for the config and the social email link', () => {
+		const link = siteConfig.social.find((s) => s.icon === 'email');
+		expect(link?.href).toBe(`mailto:${siteConfig.email}`);
+	});
 });
