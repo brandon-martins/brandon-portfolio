@@ -29,12 +29,15 @@ const byId = (id: LensId) => lenses.find((l) => l.id === id) ?? defaultLens;
 interface LensCtx {
 	lens: Lens;
 	setLens: (id: LensId) => void;
+	/** True once the lens has been resolved from the URL / saved choice (after hydration). Page order is final from here. */
+	ready: boolean;
 }
 const Ctx = createContext<LensCtx | null>(null);
 
 export function LensProvider({ children }: { children: ReactNode }) {
 	// Starts on the default so server-rendered HTML and the first client render match (no hydration warning).
 	const [lens, setLensState] = useState<Lens>(defaultLens);
+	const [ready, setReady] = useState(false);
 
 	// Priority: ?lens= URL param, then the stored choice, then the default.
 	useEffect(() => {
@@ -47,6 +50,7 @@ export function LensProvider({ children }: { children: ReactNode }) {
 		}
 		const id = parseLens(fromUrl) ?? parseLens(stored);
 		if (id) setLensState(byId(id));
+		setReady(true); // same batch as the lens update, so the page is already re-ordered when anything reacts to `ready`
 	}, []);
 
 	const setLens = useCallback((id: LensId) => {
@@ -64,7 +68,7 @@ export function LensProvider({ children }: { children: ReactNode }) {
 		}
 	}, []);
 
-	const value = useMemo(() => ({ lens, setLens }), [lens, setLens]);
+	const value = useMemo(() => ({ lens, setLens, ready }), [lens, setLens, ready]);
 	return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 

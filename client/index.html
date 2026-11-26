@@ -10,6 +10,12 @@
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<script>
+			// Opening a link with a #section: make the browser's own jump to it instant. With the page's smooth scrolling it
+			// would animate toward the section's pre-reorder position and fight the corrective jump React makes once the lens has
+			// re-ordered the sections. ScrollManager removes this override after arriving, which restores smooth scrolling.
+			if (location.hash) document.documentElement.style.scrollBehavior = 'auto';
+		</script>
+		<script>
 			// Apply the saved theme before first paint to avoid a flash.
 			try {
 				var t = localStorage.getItem('theme');
