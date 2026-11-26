@@ -30,6 +30,7 @@ export default function ProjectCard({
 			</ul>
 			<Link to={`/projects/${p.slug}`} className="link mt-auto inline-flex items-center gap-1.5">
 				Read case study
+				<span className="sr-only"> for {p.title}</span>
 				<ArrowRight className="size-4" aria-hidden />
 			</Link>
 		</article>
