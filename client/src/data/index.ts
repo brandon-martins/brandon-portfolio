@@ -2,6 +2,7 @@
 export * from './types';
 export * from './config';
 export * from './lenses';
+export * from './contact';
 export * from './experience';
 export * from './projects';
 export * from './skills';

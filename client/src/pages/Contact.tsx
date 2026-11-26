@@ -12,7 +12,7 @@ export default function Contact() {
 				path="/contact"
 			/>
 			<h1 className="text-5xl">Get in touch</h1>
-			<p className="mb-8 mt-3 text-muted">I reply within {siteConfig.responseTime}.</p>
+			<p className="mb-8 mt-3 text-muted">I typically reply within {siteConfig.responseTime}.</p>
 			<ContactForm />
 		</section>
 	);

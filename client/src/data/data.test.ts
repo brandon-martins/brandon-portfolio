@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { experience, lenses, privacyNotice, projects, qualifications, termsOfUse } from './index';
+import { RESPONSE_TIME } from '@portfolio/shared';
+import {
+	enquiryOptions,
+	experience,
+	getEnquiry,
+	lenses,
+	privacyNotice,
+	projects,
+	qualifications,
+	siteConfig,
+	termsOfUse,
+} from './index';
 
 // Guards the cross-references between data files, which the type system can't check.
 const slugs = new Set(projects.map((p) => p.slug));
@@ -42,5 +53,18 @@ describe('data layer integrity', () => {
 					expect(pages.has(m[1]), `broken internal link ${m[1]}`).toBe(true);
 			}
 		}
+	});
+
+	// The reply time is stated in several places (page, form, email). They must all read the one shared constant.
+	it('takes the reply time from the shared constant and never hard-codes it in contact copy', () => {
+		expect(siteConfig.responseTime).toBe(RESPONSE_TIME);
+		for (const o of enquiryOptions)
+			expect(`${o.title} ${o.blurb}`, o.id).not.toMatch(/business day|\bhours?\b/i);
+	});
+
+	// The contact heading follows the selected enquiry type, and a lens only pre-selects one, so each must resolve.
+	it('has contact copy for every enquiry type a lens can pre-select', () => {
+		for (const l of lenses) expect(getEnquiry(l.enquiry).id).toBe(l.enquiry);
+		expect(new Set(enquiryOptions.map((o) => o.id)).size).toBe(enquiryOptions.length);
 	});
 });

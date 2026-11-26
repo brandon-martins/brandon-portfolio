@@ -9,10 +9,20 @@ export type EnquiryType = 'job' | 'project' | 'other';
 // Keys the Footer maps to an icon, so this data file never has to import UI components.
 export type SocialIcon = 'email' | 'linkedin' | 'github' | 'website';
 
+// One entry per kind of enquiry. The contact panel's heading and intro follow the *selected* enquiry type, which the
+// lens only pre-selects, so the copy can never contradict the form next to it.
+export interface EnquiryOption {
+	id: EnquiryType;
+	label: string;
+	title: string;
+	blurb: string;
+}
+
 export interface SiteConfig {
 	name: string;
 	domain: string;
 	email: string;
+	location: string;
 	availability: { open: boolean; label: string };
 	cvUrl: string;
 	bookingUrl: string;
@@ -104,7 +114,6 @@ export interface Lens {
 	description: string;
 	note: string;
 	cta: { label: string; href: string };
-	contactTitle: string;
 	enquiry: EnquiryType;
 	order: SectionId[];
 }
