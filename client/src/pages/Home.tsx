@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import { useEffect, useState, type ComponentType } from 'react';
 import { motion } from 'motion/react';
 import { siteConfig, type SectionId } from '../data';
 import { useLens } from '../hooks/useLens';
@@ -39,7 +39,13 @@ const personLd = {
 
 // Home page: hero (with the lens picker), the lens-ordered sections, then contact.
 export default function Home() {
-	const { lens } = useLens();
+	const { lens, ready } = useLens();
+	// The re-order animation is for a visitor *changing* the lens. Resolving a ?lens= link or a saved choice on load must not
+	// animate: nobody clicked anything, and a #section link would scroll to a section that is still sliding into place.
+	const [animateOrder, setAnimateOrder] = useState(false);
+	useEffect(() => {
+		if (ready) setAnimateOrder(true);
+	}, [ready]);
 	return (
 		<>
 			<Seo
@@ -53,7 +59,11 @@ export default function Home() {
 				{lens.order.map((id) => {
 					const Section = sections[id];
 					return (
-						<motion.div key={id} layout="position" transition={{ duration: 0.3 }}>
+						<motion.div
+							key={id}
+							layout={animateOrder ? 'position' : false}
+							transition={{ duration: 0.3 }}
+						>
 							<Section />
 						</motion.div>
 					);

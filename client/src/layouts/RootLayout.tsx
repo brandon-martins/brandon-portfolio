@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
-import { LensProvider } from '../hooks/useLens';
+import { LensProvider, useLens } from '../hooks/useLens';
 import { PaletteProvider } from '../hooks/usePalette';
 import { ThemeProvider } from '../hooks/useTheme';
 import Header from '../components/Header';
@@ -11,12 +11,28 @@ import BackToTopButton from '../components/BackToTopButton';
 
 // Scrolls to the #hash target on in-site links, or back to the top on a new page. Needed because
 // the router doesn't restore scroll position for hash links by default.
+// A #hash waits for `ready`: the lens re-orders the sections once it is resolved after hydration, so scrolling to a section
+// any earlier (e.g. a shared ?lens=client#projects link) would land where the section *was*, not where it ends up.
+// The first jump after load is instant: someone opening a shared link expects to already be at the section, and a long
+// smooth scroll from the top is slow. Later in-page navigation (nav links, palette) uses the CSS `scroll-behavior`.
 function ScrollManager() {
 	const { pathname, hash } = useLocation();
+	const { ready } = useLens();
+	const arrived = useRef(false);
 	useEffect(() => {
-		if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
-		else window.scrollTo(0, 0);
-	}, [pathname, hash]);
+		if (!hash) {
+			window.scrollTo(0, 0);
+		} else if (ready) {
+			document
+				.getElementById(hash.slice(1))
+				?.scrollIntoView({ behavior: arrived.current ? 'auto' : 'instant' });
+		}
+		if (ready) {
+			// Hand scrolling back to the stylesheet (smooth); index.html forced `auto` for the first jump.
+			requestAnimationFrame(() => document.documentElement.style.removeProperty('scroll-behavior'));
+			arrived.current = true;
+		}
+	}, [pathname, hash, ready]);
 	return null;
 }
 
