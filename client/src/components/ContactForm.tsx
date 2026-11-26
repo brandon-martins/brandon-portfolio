@@ -128,12 +128,14 @@ export default function ContactForm({ type: controlledType, onTypeChange }: Prop
 			{step === 1 && (
 				<fieldset className="flex flex-col gap-3">
 					<legend className="mb-3 font-display text-2xl font-bold">What’s this about?</legend>
-					<div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+					{/* A 3-column grid from `sm` keeps the choices on one row at any card width. A label may wrap inside its pill on
+						narrow cards, which reads as a segmented control; flex-wrap would drop a whole pill onto a second row instead. */}
+					<div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
 						{enquiryOptions.map((t) => (
 							<button
 								key={t.id}
 								type="button"
-								className="btn btn-toggle w-full sm:w-auto"
+								className="btn btn-toggle w-full px-3 text-sm leading-tight"
 								aria-pressed={type === t.id}
 								onClick={() => setType(t.id)}
 							>
