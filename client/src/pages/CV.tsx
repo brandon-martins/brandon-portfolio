@@ -2,6 +2,7 @@ import { Download, Printer } from 'lucide-react';
 import { experience, projects, qualifications, siteConfig, skillGroups } from '../data';
 import { formatRange } from '../utils/sections';
 import Seo from '../components/Seo';
+import { pageTitle } from '../utils/seo';
 
 // Printable CV page, built from the same data layer as the rest of the site so the two can never drift.
 // `.no-print` hides the toolbar and the global print styles hide the header and footer.
@@ -9,7 +10,7 @@ export default function CV() {
 	return (
 		<article className="mx-auto w-full max-w-[820px] px-5 py-12 sm:px-8 sm:py-16">
 			<Seo
-				title="CV | Brandon Martins"
+				title={pageTitle('CV')}
 				description="Curriculum vitae of Brandon Martins, full-stack developer."
 				path="/cv"
 			/>
