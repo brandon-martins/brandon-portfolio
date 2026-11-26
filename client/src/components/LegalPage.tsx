@@ -2,6 +2,7 @@ import { Fragment, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { LegalDocument } from '../data';
 import Seo from './Seo';
+import { pageTitle } from '../utils/seo';
 
 // Turns "text [label](link) text" into text with real links. Keeps the legal text in the data layer as plain strings.
 // Internal links ("/terms") use the router; http(s) links open in a new tab; mailto: links stay in place.
@@ -44,7 +45,7 @@ function Inline({ text }: { text: string }) {
 export default function LegalPage({ doc, path }: { doc: LegalDocument; path: string }) {
 	return (
 		<article className="mx-auto w-full max-w-[760px] px-5 pt-12 sm:px-8 sm:pt-16">
-			<Seo title={`${doc.title} | Brandon Martins`} description={doc.description} path={path} />
+			<Seo title={pageTitle(doc.title)} description={doc.description} path={path} />
 			<p className="meta">Last updated {doc.updated}</p>
 			<h1 className="mt-3 text-[clamp(34px,5vw,48px)] leading-[1.1]">{doc.title}</h1>
 			<p className="mt-5 text-[17px] leading-relaxed text-muted">

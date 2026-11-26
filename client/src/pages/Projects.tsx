@@ -2,6 +2,7 @@ import { useFilters } from '../hooks/useFilters';
 import Seo from '../components/Seo';
 import ProjectCard from '../components/ProjectCard';
 import ProjectFilters from '../components/ProjectFilters';
+import { pageTitle } from '../utils/seo';
 
 // Full project list with type, technology and year filters (also reached from the skill → "N projects" links).
 export default function Projects() {
@@ -9,7 +10,7 @@ export default function Projects() {
 	return (
 		<section className="mx-auto w-full max-w-[1200px] px-5 sm:px-8 pt-16">
 			<Seo
-				title="Projects | Brandon Martins"
+				title={pageTitle('Projects')}
 				description="Capstone, client and personal projects, with case studies."
 				path="/projects"
 			/>

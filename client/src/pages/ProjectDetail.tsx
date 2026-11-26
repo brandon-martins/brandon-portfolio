@@ -6,6 +6,7 @@ import { GitHubLogo } from '../assets';
 import Seo from '../components/Seo';
 import BrandIcon from '../components/ui/BrandIcon';
 import NotFound from './NotFound';
+import { pageTitle } from '../utils/seo';
 
 // One case-study page per project, pre-rendered from routes.tsx. Unknown slugs fall back to the 404 page.
 export default function ProjectDetail() {
@@ -31,7 +32,7 @@ export default function ProjectDetail() {
 	return (
 		<article className="mx-auto w-full max-w-[760px] px-5 sm:px-8 pt-16">
 			<Seo
-				title={`${project.title} | Brandon Martins`}
+				title={pageTitle(project.title)}
 				description={project.summary}
 				path={`/projects/${project.slug}`}
 			/>

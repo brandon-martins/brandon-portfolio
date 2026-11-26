@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { pageTitle } from '../utils/seo';
 
 // Rendered for unknown URLs and unknown project slugs. postbuild.mjs also copies it to dist/404.html for the host.
 export default function NotFound() {
 	return (
 		<section className="mx-auto w-full max-w-[640px] px-5 sm:px-8 py-24">
 			<Seo
-				title="Page not found | Brandon Martins"
+				title={pageTitle('Page not found')}
 				description="This page does not exist."
 				path="/404"
 			/>
