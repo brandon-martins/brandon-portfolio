@@ -18,3 +18,4 @@
 - Section anchors rely on `--section-gap` (top padding) and `scroll-padding-top: 0`. Do not add `scroll-margin`/`scroll-padding` offsets.
 - The brand mark is `client/public/favicon.svg`; the header uses that same file. Change it in one place.
 - Legal text lives in `client/src/data/legal.ts` and must describe what the code actually stores.
+- Facts stated on the page _and_ in emails (the reply time) come from `@portfolio/shared`, never retyped. Contact heading/intro copy is keyed by enquiry type in `data/contact.ts`, not by lens.

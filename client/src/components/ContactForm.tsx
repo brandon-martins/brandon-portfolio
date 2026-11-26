@@ -2,16 +2,16 @@ import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from
 import { ArrowRight, CircleCheck, Send } from 'lucide-react';
 import { contactSchema } from '@portfolio/shared';
 import { contactService } from '../services/contact.service';
-import { siteConfig, type EnquiryType } from '../data';
+import { enquiryOptions, siteConfig, type EnquiryType } from '../data';
 import { useLens } from '../hooks/useLens';
 import Turnstile from './Turnstile';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
-const types: { id: EnquiryType; label: string }[] = [
-	{ id: 'job', label: 'Job opportunity' },
-	{ id: 'project', label: 'Project enquiry' },
-	{ id: 'other', label: 'Something else' },
-];
+interface Props {
+	/** Controlled enquiry type (the home page's contact panel, so its heading can follow it). Omit to let the form manage it. */
+	type?: EnquiryType;
+	onTypeChange?: (type: EnquiryType) => void;
+}
 
 // Label + control + optional hint, so every input has a real <label> (accessibility requirement).
 function Field({
@@ -38,9 +38,17 @@ function Field({
 
 // Three-step enquiry form: 1) what it's about, 2) details for that type, 3) your contact details.
 // "Something else" skips step 2. Validation uses the same zod schema shape as the server.
-export default function ContactForm() {
+export default function ContactForm({ type: controlledType, onTypeChange }: Props) {
 	const { lens } = useLens();
-	const [type, setType] = useState<EnquiryType>(lens.enquiry);
+	const [ownType, setOwnType] = useState<EnquiryType>(lens.enquiry);
+	const type = controlledType ?? ownType;
+	const setType = useCallback(
+		(t: EnquiryType) => {
+			setOwnType(t);
+			onTypeChange?.(t);
+		},
+		[onTypeChange],
+	);
 	const [step, setStep] = useState(1);
 	const [fields, setFields] = useState<Record<string, string>>({});
 	const [common, setCommon] = useState({
@@ -57,7 +65,7 @@ export default function ContactForm() {
 	// Keep the enquiry type in step with the chosen lens (until the visitor edits it).
 	useEffect(() => {
 		setType(lens.enquiry);
-	}, [lens.enquiry]);
+	}, [lens.enquiry, setType]);
 	// Stable callback so the Turnstile widget isn't re-rendered on every keystroke.
 	const onToken = useCallback((t: string) => setToken(t), []);
 
@@ -98,7 +106,8 @@ export default function ContactForm() {
 				<CircleCheck className="size-8 text-ok" aria-hidden />
 				<h3 className="text-2xl">Message sent</h3>
 				<p className="text-muted">
-					Thanks, I’ve emailed you an acknowledgement. I reply within {siteConfig.responseTime}.
+					Thanks, I’ve emailed you an acknowledgement. I typically reply within{' '}
+					{siteConfig.responseTime}.
 				</p>
 				<a
 					className="btn btn-accent inline-flex w-full items-center justify-center no-underline sm:w-auto sm:self-start"
@@ -120,7 +129,7 @@ export default function ContactForm() {
 				<fieldset className="flex flex-col gap-3">
 					<legend className="mb-3 font-display text-2xl font-bold">What’s this about?</legend>
 					<div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-						{types.map((t) => (
+						{enquiryOptions.map((t) => (
 							<button
 								key={t.id}
 								type="button"

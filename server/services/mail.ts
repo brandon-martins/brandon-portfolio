@@ -3,6 +3,7 @@
 import nodemailer from 'nodemailer';
 import { env } from '../configs/env.js';
 import type { ContactPayload } from '@portfolio/shared';
+import { acknowledgementText } from './acknowledgement.js';
 
 const transporter = env.SMTP_HOST
 	? nodemailer.createTransport({
@@ -36,7 +37,7 @@ export async function sendContactEmails(input: ContactPayload): Promise<void> {
 			from,
 			to: input.email,
 			subject: 'Thanks — I got your message',
-			text: `Hi ${input.name},\n\nThanks for getting in touch. I reply within 1–2 business days.\n\n— Brandon`,
+			text: acknowledgementText(input.name),
 		}),
 	]);
 }

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { CalendarDays, Mail } from 'lucide-react';
-import { siteConfig } from '../data';
+import { getEnquiry, siteConfig, type EnquiryType } from '../data';
 import { useLens } from '../hooks/useLens';
 import ContactForm from './ContactForm';
 
@@ -10,6 +11,10 @@ import ContactForm from './ContactForm';
 // two together always fill a screen.
 export default function ContactSection() {
 	const { lens } = useLens();
+	// The enquiry type is owned here so the heading and intro follow it. The lens pre-selects it (ContactForm keeps it in
+	// step), and the visitor can still change it with the pills.
+	const [type, setType] = useState<EnquiryType>(lens.enquiry);
+	const enquiry = getEnquiry(type);
 	// Contact always follows the six lens-ordered sections, so its number is derived, not hard-coded.
 	const number = String(lens.order.length + 1).padStart(2, '0');
 	return (
@@ -22,11 +27,11 @@ export default function ContactSection() {
 				<div className="flex flex-[1_1_320px] flex-col gap-5">
 					<span className="meta text-panel-muted">{number} — Contact</span>
 					<h2 id="contact-title" className="text-[clamp(32px,5vw,48px)] leading-[1.1]">
-						{lens.contactTitle}
+						{enquiry.title}
 					</h2>
 					<p className="text-[17px] leading-[1.55] text-panel-muted">
-						Hiring or starting a project, tell me a little and I’ll reply within{' '}
-						{siteConfig.responseTime}. Johannesburg, South Africa.
+						{enquiry.blurb} I typically reply within {siteConfig.responseTime}. Based in{' '}
+						{siteConfig.location}.
 					</p>
 					<div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 						<a
@@ -46,7 +51,7 @@ export default function ContactSection() {
 					</div>
 				</div>
 				<div className="flex-[1_1_410px] self-center">
-					<ContactForm />
+					<ContactForm type={type} onTypeChange={setType} />
 				</div>
 			</div>
 		</section>
