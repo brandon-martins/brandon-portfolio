@@ -67,4 +67,22 @@ describe('data layer integrity', () => {
 		for (const l of lenses) expect(getEnquiry(l.enquiry).id).toBe(l.enquiry);
 		expect(new Set(enquiryOptions.map((o) => o.id)).size).toBe(enquiryOptions.length);
 	});
+
+	// The carousel reads `qualifications` in order and shows a count, so ids must be unique and the list stays newest first.
+	it('keeps certifications and courses complete, unique and newest first', () => {
+		const ids = qualifications.map((q) => q.id);
+		expect(new Set(ids).size).toBe(ids.length);
+		const certs = qualifications.filter((q) => q.kind !== 'Degree');
+		for (const c of certs) {
+			expect(c.title.trim(), c.id).not.toBe('');
+			expect(c.issuer.trim(), c.id).not.toBe('');
+			expect(c.year, c.id).toMatch(/^\d{4}$/);
+			// Optional, but when present it must be a real, secure link (not a '#' placeholder).
+			if (c.credentialUrl) expect(c.credentialUrl, c.id).toMatch(/^https:\/\/\S+$/);
+		}
+		const years = certs.map((c) => Number(c.year));
+		expect(years, 'certifications and courses must be newest first').toEqual(
+			[...years].sort((a, b) => b - a),
+		);
+	});
 });
