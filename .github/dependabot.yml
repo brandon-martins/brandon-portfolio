@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directories:
+      - /
+      - /client
+      - /server
+      - /packages/shared
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # vite-react-ssg needs React Router 6.
+      - dependency-name: react-router-dom
+        update-types: [version-update:semver-major]
+      # Keep Node type definitions on the Node 22 line used by .nvmrc and CI.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
