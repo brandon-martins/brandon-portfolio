@@ -38,9 +38,10 @@ export const qualifications: Qualification[] = [
 	{
 		id: 'netflix-clone-react',
 		kind: 'Course',
-		title: 'Netflix Clone: React JS',
-		issuer: 'Eudonix',
+		title: 'Build Netflix Using React',
+		issuer: 'Eduonix',
 		year: '2022',
+		credentialUrl: 'https://www.eduonix.com/certificate/f8b441b205',
 	},
 	{
 		id: 'javascript-developer',
