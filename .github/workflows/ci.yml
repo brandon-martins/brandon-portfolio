@@ -1,6 +1,8 @@
 name: CI
+# Runs for every pull request and for pushes to main only, so a PR branch is not tested twice (once as a push, once as a PR).
 on:
   push:
+    branches: [main]
   pull_request:
 
 # Same gates as local: format → lint → typecheck → test → build → Lighthouse. A failure at any step blocks the merge, except Lighthouse, which is advisory for now.
